@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+	<meta charset="UTF-8"/>
+	<title>My First PWA</title>
+	<meta name="description" content="My first PWA"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/materialize.min.css">
+	</head>
+	<body>
+
+	<!-- Navigasi -->
+	<nav class="teal lighten-1" role="navigation">
+	<div class="nav-wrapper container">
+	<a href="#" class="brand-logo" id="logo-container">My App</a>
+	<a href="#" class="sidenav-trigger" data-target="nav-mobile">☰</a>
+
+	<ul class="topnav right hide-on-med-and-down"></ul>
+	<ul class="sidenav" id="nav-mobile"></ul>
+	</div>
+	</nav>
+	<!-- Akhir Navigasi -->
+	
+	<div class="container" id="body-content"></div>
+	
+	<script src="js/materialize.min.js"></script>
+	<script src="js/nav.js"></script>
+	
+	 <script>
+    // Script to register the service worker goes here 
+	// syntax dibawah berguna untuk registrasi service worker dan didalamnya terdapat sebuah
+	// kondisi jika proses instal service worker tersebut tidak suport maka akan menampilkan 
+	// notif 'Service	worker	not	supported'
+		if	(!('serviceWorker'	in	navigator))	{
+				console.log('Service	worker	not	supported');
+				//return;
+		}
+	// kondisi dibawah ini merupakan proses register yang membaca dari file 'fajar-sw.js' yang
+	// yg kemudian jika sudah terbaca akan menampilkan 'Registered' pada console yg berarti sudah 
+	// teregister
+		navigator.serviceWorker.register('fajar-sw.js')
+		.then(function()	{
+					console.log('Registered');
+		})
+	// kemudian pada function error tersebut memiliki fungsi untuk melakukan cek pembacaan data dari  'fajar-sw.js'
+	// kemudian jika terjadi erorr maka akan menampilkan notif pada console bahwa Registration failed / gagal 
+		.catch(function(error)	{
+				console.log('Registration	failed:',	error);
+		});
+    </script>
+	
+	</body>
+	</html>
